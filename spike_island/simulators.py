@@ -246,48 +246,40 @@ def demo() -> None:
         "Rhythmic (rate=10 Hz, jitter=5 ms)",
     ]
 
-    label_kwargs = dict(size=10, fontfamily="monospace")
-    time_axis = np.arange(0, duration, 1.0)
-
     axes[0].eventplot(
         poisson_spikes(rate, duration, seed=42),
         linelengths=0.8,
         colors="black",
-        **label_kwargs,
     )
-    axes[0].set_title(titles[0])
+    axes[0].set_title(titles[0], fontsize=10)
 
     axes[1].eventplot(
         refractory_poisson(rate, duration, refractory_ms=2.0, seed=42),
         linelengths=0.8,
         colors="black",
-        **label_kwargs,
     )
-    axes[1].set_title(titles[1])
+    axes[1].set_title(titles[1], fontsize=10)
 
     axes[2].eventplot(
         bursty_poisson(rate / 2, 5.0, 4, 1.5, 5.0, duration, seed=42),
         linelengths=0.8,
         colors="black",
-        **label_kwargs,
     )
-    axes[2].set_title(titles[2])
+    axes[2].set_title(titles[2], fontsize=10)
 
     axes[3].eventplot(
         rhythmic_spikes(10.0, duration, jitter_sd_ms=1.0, seed=42),
         linelengths=0.8,
         colors="black",
-        **label_kwargs,
     )
-    axes[3].set_title(titles[3])
+    axes[3].set_title(titles[3], fontsize=10)
 
     axes[4].eventplot(
         rhythmic_spikes(10.0, duration, jitter_sd_ms=5.0, seed=42),
         linelengths=0.8,
         colors="black",
-        **label_kwargs,
     )
-    axes[4].set_title(titles[4])
+    axes[4].set_title(titles[4], fontsize=10)
 
     for ax in axes:
         ax.set_yticks([])
