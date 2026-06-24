@@ -7,6 +7,13 @@ from spike_island.simulators import (
     rhythmic_spikes,
 )
 from spike_island.analysis import analyze, plot_analysis_dashboard
+from spike_island.waveforms import (
+    generate_ap_template,
+    plot_waveform_dashboard,
+    spikes_to_waveform,
+    waveform_statistics,
+)
+import numpy as np
 
 # Generate spike trains
 duration_ms = 5_000.0  # 5 seconds
@@ -38,3 +45,39 @@ for res in results:
 
 # Save analysis dashboard
 plot_analysis_dashboard(results, duration_ms)
+
+# --- Day 3: Waveform visualization ---
+template_t, template = generate_ap_template()
+
+# Generate and display waveform traces for each neuron
+waveform_results = []
+for res in results:
+    times, voltage = spikes_to_waveform(
+        res["spike_times"],
+        template,
+        template_dt=0.1,
+        duration_ms=duration_ms,
+        sampling_hz=10_000.0,
+        noise_std_mv=0.05,
+        noise_type="gaussian",
+        seed=42,
+    )
+    stats = waveform_statistics(voltage, times)
+    waveform_results.append({
+        "name": res["name"],
+        "spike_times": res["spike_times"],
+        "rms_mv": stats["rms_mv"],
+        "snr_db": stats["snr_db"],
+    })
+    print(f"  {res['name']:>10s}  RMS={stats['rms_mv']:.3f} mV  SNR={stats['snr_db']:.1f} dB")
+
+# Save waveform dashboard
+plot_waveform_dashboard(
+    waveform_results,
+    duration_ms=duration_ms,
+    template=template,
+    template_dt=0.1,
+    sampling_hz=10_000.0,
+    noise_std_mv=0.05,
+    seed=42,
+)

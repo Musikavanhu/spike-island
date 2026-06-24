@@ -19,12 +19,13 @@ This generates spike trains, computes analysis metrics, and saves a dashboard to
 ## 📦 Modules
 - `simulators` — Generate spike trains (Day 1)
 - `analysis` — ISI histograms, firing rate, CV, autocorrelation (Day 2)
+- `waveforms` — AP templates, continuous voltage traces, waveform dashboard (Day 3)
 ## 🚧 Daily milestones
 | Day | Module | Status |
 |---|---|---|
 | 1 | Core simulators | ✅ |
 | 2 | Analysis metrics (ISI, CV, autocorrelation) | ✅ |
-| 3 | Waveform visualization dashboard | ⏳ |
+| 3 | Waveform visualization dashboard | ✅ |
 | 4 | Spike sorting (template matching) | ⏳ |
 | 5 | Wilson-Cowan neural oscillator | ⏳ |
 | 6 | Full demo pipeline | ⏳ |

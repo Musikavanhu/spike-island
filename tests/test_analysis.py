@@ -151,7 +151,7 @@ class TestAnalyze:
     def test_returns_dict_with_keys(self):
         spikes = np.cumsum(np.random.default_rng(0).exponential(50, 500))
         result = analyze(spikes, duration_ms=25_000.0, name="test")
-        expected_keys = {"name", "spikes", "isi_mean", "isi_std",
+        expected_keys = {"name", "spikes", "spike_times", "isi_mean", "isi_std",
                          "cv", "firing_rate_hz", "isi_counts",
                          "isi_edges", "corr", "lags"}
         assert expected_keys.issubset(result.keys())

@@ -218,6 +218,7 @@ def analyze(
         return {
             "name": name,
             "spikes": n_spikes,
+            "spike_times": spike_times,
             "isi_mean": 0.0,
             "isi_std": 0.0,
             "cv": 0.0,
@@ -235,6 +236,7 @@ def analyze(
     return {
         "name": name,
         "spikes": n_spikes,
+        "spike_times": spike_times,
         "isi_mean": float(np.mean(isis)),
         "isi_std": float(np.std(isis)),
         "cv": coefficient_of_variation(spike_times),
