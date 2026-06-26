@@ -81,3 +81,48 @@ plot_waveform_dashboard(
     noise_std_mv=0.05,
     seed=42,
 )
+
+# --- Day 4: Spike sorting ---
+from spike_island.sorting import (
+    contaminate_recording,
+    evaluate_sorting,
+    generate_ground_truth,
+    print_sorting_report,
+    template_sort,
+)
+
+# Use the first neuron's spike times as a simplified sorting test
+test_spikes = trains["Poisson"]
+tpl_0 = np.array([-5.0, 0.0, 2.5, -0.3])
+tpl_1 = np.array([-3.0, 0.5, 0.0])
+
+# Generate a second neuron's spike train
+test_spikes_1 = poisson_spikes(rate_hz=15.0, duration_ms=duration_ms, seed=99)
+
+recording, true_assignments = contaminate_recording(
+    spike_times_list=[test_spikes, test_spikes_1],
+    templates=[tpl_0, tpl_1],
+    noise_std=0.3,
+    sampling_hz=10_000.0,
+    duration_ms=duration_ms,
+    seed=42,
+)
+
+detected, counts = template_sort(
+    recording=recording,
+    templates=[tpl_0, tpl_1],
+    dt_ms=0.1,
+    threshold=0.3,
+    refractory_ms=2.0,
+    time_window_ms=1.0,
+    max_iter=500,
+)
+
+report = evaluate_sorting(
+    true_spikes=true_assignments,
+    detected_spikes=detected,
+    merge_window_ms=0.5,
+)
+
+print(f"  {'':>10s}  {'Sorting:':>12s} detected={report.total_detected}  "
+      f"precision={report.precision:.2f}  recall={report.recall:.2f}  f1={report.f1_score:.2f}")
