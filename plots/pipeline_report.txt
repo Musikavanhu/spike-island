@@ -1,0 +1,52 @@
+======================================================================
+SPIKE ISLAND — Full Pipeline Report
+Generated: 2026-07-04 20:21:53
+Version: spike-island v0.6.0
+======================================================================
+
+## Configuration
+  Duration:       200 ms
+  Sampling rate:  1000 Hz
+  Seed:           42
+  Noise σ (mV):   0.05
+  Sort threshold: 0.3
+
+## [0.2 ms] SIMULATORS
+       Poisson:     1 spikes
+    Refractory:     1 spikes
+        Bursty:     1 spikes
+      Rhythmic:     2 spikes
+
+## [0.7 ms] ANALYSIS
+       Poisson: rate=5.0 Hz, CV=0.000, n_ISI=0
+    Refractory: rate=5.0 Hz, CV=0.000, n_ISI=0
+        Bursty: rate=5.0 Hz, CV=0.000, n_ISI=0
+      Rhythmic: rate=10.0 Hz, CV=0.000, n_ISI=0
+
+## [0.5 ms] WAVEFORMS
+       Poisson: RMS=0.071 mV, SNR=19.4 dB
+    Refractory: RMS=0.072 mV, SNR=19.7 dB
+        Bursty: RMS=0.071 mV, SNR=19.4 dB
+      Rhythmic: RMS=0.095 mV, SNR=21.9 dB
+
+## [76.8 ms] SORTING
+  Detected:     1
+  Precision:    0.0000
+  Recall:       0.0000
+  F1 Score:     0.0000
+
+## [238.5 ms] WILSON_COWAN
+  Oscillating:  True
+  Frequency:    0.0 Hz
+  Amplitude:    0.009677417884544915
+  E mean:       0.006939385176292043
+  Bifurcation:   0/30 oscillatory points
+
+## [0.5 ms] STDP
+  Initial w:    0.5000
+  Final w:      1.0000
+  Δw:           +0.5000 (LTP (strengthening))
+
+----------------------------------------------------------------------
+Total pipeline time: 317.6 ms
+======================================================================

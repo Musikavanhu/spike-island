@@ -25,6 +25,9 @@ This generates a spike train visualization and saves it to `plots/spike_train_de
 - `analysis` — ISI histograms, firing rate, CV, autocorrelation (Day 2)
 - `waveforms` — Continuous-time AP templates & spike waveform pipeline (Day 3)
 - `sorting` — Template matching spike sorter via matching pursuit (Day 4)
+- `wilson_cowan` — Mean-field E-I oscillator: fixed points, stability, bifurcation scans, oscillation metrics (Day 5)
+- `stdp` — Spike-timing dependent plasticity with exponential learning rules (Day 6)
+- `pipeline` — Full demo pipeline orchestrating all modules into a unified workflow (Day 7)
 
 ## 🚧 Daily milestones
 | Day | Module | Status |
@@ -33,8 +36,9 @@ This generates a spike train visualization and saves it to `plots/spike_train_de
 | 2 | Analysis metrics (ISI, CV, autocorrelation) | ✅ |
 | 3 | Waveform visualization dashboard | ✅ |
 | 4 | Spike sorting (template matching) | ✅ |
-| 5 | Wilson-Cowan neural oscillator | ⏳ |
-| 6 | Full demo pipeline | ⏳ |
+| 5 | Wilson-Cowan neural oscillator | ✅ |
+| 6 | STDP learning engine | ✅ |
+| 7 | Full demo pipeline | ✅ |
 
 ---
 Built by [Tino](https://github.com/Musikavanhu) — daily commits to build a neurotech portfolio.

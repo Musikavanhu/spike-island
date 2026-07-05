@@ -20,3 +20,6 @@ dev = [
     "black",
     "ruff",
 ]
+
+[tool.setuptools]
+packages = ["spike_island"]

@@ -4,4 +4,4 @@ A minimalist neurotech simulation toolkit.
 Simulates neural spiking activity for learning and portfolio building.
 """
 
-__version__ = "0.4.0"
+__version__ = "0.6.0"
