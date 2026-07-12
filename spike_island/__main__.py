@@ -17,6 +17,7 @@ Usage
 -----
 >>> python -m spike_island              # full pipeline demo (default)
 >>> python -m spike_island --quick      # shorter run for quick validation
+>>> python -m spike_island --bench      # run performance benchmark suite
 """
 
 from __future__ import annotations
@@ -26,6 +27,7 @@ import logging
 import sys
 
 from spike_island.pipeline import PipelineConfig, run_and_report
+from spike_island.benchmarks import run_benchmarks, print_benchmark_report, save_benchmark_report
 
 
 def parse_args() -> argparse.Namespace:
@@ -36,6 +38,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--quick", action="store_true",
         help="Run a shorter simulation for quick validation (~200 ms)",
+    )
+    parser.add_argument(
+        "--bench", action="store_true",
+        help="Run the performance benchmark suite across all modules",
     )
     parser.add_argument(
         "--seed", type=int, default=42,
@@ -49,13 +55,17 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    """Run the full pipeline demo."""
+    """Run the full pipeline demo or benchmark suite."""
     args = parse_args()
 
     logging.basicConfig(
         level=logging.INFO,
         format="%(name)s [%(levelname)s] %(message)s",
     )
+
+    if args.bench:
+        _run_benchmarks(args)
+        return
 
     if args.quick:
         config = PipelineConfig(
@@ -76,6 +86,19 @@ def main() -> None:
 
     result = run_and_report(config)
     print(f"\n✅ Pipeline complete in {result.total_elapsed_ms:.1f} ms")
+
+
+def _run_benchmarks(args: argparse.Namespace) -> None:
+    """Run the benchmark suite and save the report."""
+    print("🔬 Running benchmark suite across all modules...")
+    suite = run_benchmarks()
+    print_benchmark_report(suite)
+
+    report_path = f"{args.output_dir}/benchmark_report.txt"
+    save_benchmark_report(suite, report_path)
+    print(f"\n✅ Benchmark suite complete in {suite.total_elapsed_ms:.1f} ms")
+    print(f"   {len(suite.results)} benchmarks run")
+    print(f"   Report saved to {report_path}")
 
 
 if __name__ == "__main__":
