@@ -41,6 +41,7 @@ This generates a spike train visualization and saves it to `plots/spike_train_de
 | 6 | STDP learning engine | ✅ |
 | 7 | Full demo pipeline | ✅ |
 | 8 | Performance profiling & benchmarking suite | ✅ |
+| 9 | Interactive Jupyter notebook walkthrough | ⏳ |
 
 ---
 Built by [Tino](https://github.com/Musikavanhu) — daily commits to build a neurotech portfolio.
