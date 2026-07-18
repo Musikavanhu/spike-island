@@ -29,6 +29,7 @@ This generates a spike train visualization and saves it to `plots/spike_train_de
 - `stdp` — Spike-timing dependent plasticity with exponential learning rules (Day 6)
 - `pipeline` — Full demo pipeline orchestrating all modules into a unified workflow (Day 7)
 - `benchmarks` — Performance profiling & benchmarking suite for all modules (Day 8)
+- `notebook` — Interactive Jupyter notebook walkthrough covering all modules (Day 9)
 
 ## 🚧 Daily milestones
 | Day | Module | Status |
@@ -41,7 +42,7 @@ This generates a spike train visualization and saves it to `plots/spike_train_de
 | 6 | STDP learning engine | ✅ |
 | 7 | Full demo pipeline | ✅ |
 | 8 | Performance profiling & benchmarking suite | ✅ |
-| 9 | Interactive Jupyter notebook walkthrough | ⏳ |
+| 9 | Interactive Jupyter notebook walkthrough | ✅ |
 
 ---
 Built by [Tino](https://github.com/Musikavanhu) — daily commits to build a neurotech portfolio.

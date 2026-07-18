@@ -28,6 +28,7 @@ import sys
 
 from spike_island.pipeline import PipelineConfig, run_and_report
 from spike_island.benchmarks import run_benchmarks, print_benchmark_report, save_benchmark_report
+from spike_island.notebook import generate_and_save
 
 
 def parse_args() -> argparse.Namespace:
@@ -42,6 +43,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--bench", action="store_true",
         help="Run the performance benchmark suite across all modules",
+    )
+    parser.add_argument(
+        "--notebook", action="store_true",
+        help="Generate the interactive Jupyter notebook walkthrough",
     )
     parser.add_argument(
         "--seed", type=int, default=42,
@@ -65,6 +70,10 @@ def main() -> None:
 
     if args.bench:
         _run_benchmarks(args)
+        return
+
+    if args.notebook:
+        _run_notebook(args)
         return
 
     if args.quick:
@@ -99,6 +108,21 @@ def _run_benchmarks(args: argparse.Namespace) -> None:
     print(f"\n✅ Benchmark suite complete in {suite.total_elapsed_ms:.1f} ms")
     print(f"   {len(suite.results)} benchmarks run")
     print(f"   Report saved to {report_path}")
+
+
+def _run_notebook(args: argparse.Namespace) -> None:
+    """Generate and save the interactive Jupyter notebook."""
+    print("📓 Generating interactive Jupyter notebook walkthrough...")
+    out_path = f"{args.output_dir}/spike_island_walkthrough.ipynb"
+    saved = generate_and_save(out_path)
+    print(f"\n✅ Notebook saved → {saved}")
+    import nbformat
+    nb = nbformat.read(str(saved), as_version=4)
+    code_cells = sum(1 for c in nb.cells if c.cell_type == "code")
+    md_cells = sum(1 for c in nb.cells if c.cell_type == "markdown")
+    print(f"   {code_cells} code cells, {md_cells} markdown cells")
+    print(f"   Total: {len(nb.cells)} cells")
+    print(f"\n   Open with: jupyter notebook {saved}")
 
 
 if __name__ == "__main__":
